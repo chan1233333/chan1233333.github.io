@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>凌金婵 · 简历</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap');
+
+  :root {
+    --sidebar: #1a1e24; --sidebar-text: #bcc4cc; --sidebar-label: #00a6a7;
+    --accent: #00a6a7; --dark: #2c2c2c; --body: #555; --white: #ffffff;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', 'Noto Sans SC', sans-serif;
+    background: #e8ecf1; display: flex; justify-content: center;
+    padding: 40px 20px; color: var(--dark); -webkit-font-smoothing: antialiased;
+  }
+
+  .page {
+    width: 210mm; min-height: 297mm; background: #fff;
+    display: flex; box-shadow: 0 2px 24px rgba(0,0,0,0.10); overflow: hidden;
+  }
+
+  .sidebar {
+    width: 33%; background: var(--sidebar); color: var(--sidebar-text);
+    padding: 36px 26px 30px 26px; display: flex; flex-direction: column; gap: 22px;
+  }
+
+  .photo-wrap { display: flex; justify-content: center; margin-bottom: 2px; }
+  .photo {
+    width: 100px; height: 100px; border-radius: 50%;
+    border: 3px solid var(--accent); object-fit: cover;
+    background: #2a3039; display: flex; align-items: center; justify-content: center;
+    font-size: 40px; color: #5a6069; overflow: hidden;
+  }
+  .photo img { width: 100%; height: 100%; object-fit: cover; }
+
+  .side-section h3 {
+    font-size: 10.5px; font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px;
+    color: var(--sidebar-label); margin-bottom: 10px; padding-bottom: 6px;
+    border-bottom: 1px solid rgba(255,255,255,0.10);
+  }
+
+  .contact-item { display: flex; align-items: center; gap: 10px; font-size: 9px; line-height: 1.5; margin-bottom: 5px; }
+  .contact-item .icon { width: 15px; text-align: center; flex-shrink: 0; font-size: 10px; opacity: 0.8; }
+
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 5px; }
+  .skill-tag {
+    background: rgba(255,255,255,0.07); color: var(--sidebar-text);
+    font-size: 8.5px; padding: 3px 9px; border-radius: 3px; letter-spacing: 0.3px;
+  }
+
+  .trait-list { font-size: 9px; line-height: 1.8; }
+  .trait-list span { color: var(--accent); margin-right: 4px; }
+
+  .main {
+    width: 67%; padding: 36px 30px 30px 32px;
+    display: flex; flex-direction: column; gap: 14px;
+  }
+
+  .name { font-size: 27px; font-weight: 700; color: #1a1a1a; letter-spacing: 1px; line-height: 1.1; }
+  .tagline { font-size: 10px; color: #888; font-weight: 400; margin-top: 2px; }
+
+  .self-intro {
+    font-size: 9.5px; color: var(--body); line-height: 1.65;
+    background: #f9fafa; padding: 10px 14px; border-radius: 4px;
+    border-left: 3px solid var(--accent); margin-top: 2px;
+  }
+
+  .section {}
+  .section-title {
+    font-size: 11px; font-weight: 700; color: #1a1a1a;
+    letter-spacing: 1px; text-transform: uppercase;
+    padding-bottom: 4px; border-bottom: 2px solid var(--accent);
+    margin-bottom: 8px; display: flex; align-items: center; gap: 7px;
+  }
+  .section-title .dot { width: 6px; height: 6px; background: var(--accent); border-radius: 50%; flex-shrink: 0; }
+
+  .exp-item { margin-bottom: 8px; }
+  .exp-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 2px; }
+  .exp-title { font-size: 10.5px; font-weight: 600; color: #1a1a1a; }
+  .exp-date { font-size: 8.5px; color: #aaa; white-space: nowrap; margin-left: 8px; }
+
+  .exp-detail { font-size: 9px; color: var(--body); line-height: 1.55; }
+  .exp-detail li { list-style: none; margin-bottom: 1px; display: flex; gap: 6px; }
+  .exp-detail li::before { content: '—'; color: var(--accent); font-size: 7px; flex-shrink: 0; margin-top: 1px; }
+
+  .metric {
+    display: inline-block; background: #eaf7f7; color: #007e7e;
+    font-size: 8.5px; font-weight: 600; padding: 2px 7px; border-radius: 3px; margin-right: 3px;
+  }
+
+  .skills-bar { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 4px; }
+  .skills-bar .skill-chip {
+    font-size: 9px; color: var(--accent); font-weight: 600;
+    background: #eef8f8; padding: 3px 10px; border-radius: 4px; letter-spacing: 0.5px;
+  }
+
+  .edu-row { font-size: 9.5px; color: var(--body); line-height: 1.6; }
+
+  @media print {
+    body { background: #fff; padding: 0; }
+    .page { box-shadow: none; width: 210mm; min-height: 297mm; }
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <aside class="sidebar">
+    <div class="photo-wrap">
+      <div class="photo">
+        <img src="img_2_200x200.png" alt="凌金婵" onerror="this.parentElement.innerHTML='👩🏻‍💼'">
+      </div>
+    </div>
+
+    <div class="side-section">
+      <h3>联系方式</h3>
+      <div class="contact-item"><span class="icon">📞</span> 13421209168</div>
+      <div class="contact-item"><span class="icon">✉️</span> 3046711478@qq.com</div>
+      <div class="contact-item"><span class="icon">📍</span> 广东 · 可base深圳/广州/上海/杭州/北京</div>
+    </div>
+
+    <div class="side-section">
+      <h3>求职意向</h3>
+      <div class="skill-tags">
+        <span class="skill-tag">抖音达人商务运营</span>
+        <span class="skill-tag">暑期实习</span>
+      </div>
+      <div style="font-size:8.5px; margin-top:6px; opacity:0.65;">期望薪资 4-5K · 6月底可到岗</div>
+    </div>
+
+    <div class="side-section">
+      <h3>工具 & 平台</h3>
+      <div class="skill-tags">
+        <span class="skill-tag">抖音运营</span>
+        <span class="skill-tag">精选联盟</span>
+        <span class="skill-tag">达人对接</span>
+        <span class="skill-tag">直播带货</span>
+        <span class="skill-tag">剪映 / CapCut</span>
+        <span class="skill-tag">Excel 数据分析</span>
+        <span class="skill-tag">Office 全家桶</span>
+        <span class="skill-tag">Python</span>
+        <span class="skill-tag">Claude Code</span>
+        <span class="skill-tag">Hermes</span>
+      </div>
+    </div>
+
+    <div class="side-section">
+      <h3>自我评价</h3>
+      <div class="trait-list">
+        <div><span>▸</span> 持续 2 年运营自有账号，单条最高 150 万播放 <span style="color:#00a6a7;font-weight:600;">→ 执行力 &amp; 内容判断力</span></div>
+        <div><span>▸</span> 独立完成达人筛选→建联→推品→复盘全链路 <span style="color:#00a6a7;font-weight:600;">→ 独立担当 &amp; 商务沟通力</span></div>
+        <div><span>▸</span> 用曝光率、停留时长、转化率等指标驱动迭代 <span style="color:#00a6a7;font-weight:600;">→ 数据导向 &amp; 理性决策</span></div>
+        <div><span>▸</span> 一个月从 0 摸透精选联盟直播操作与分佣机制 <span style="color:#00a6a7;font-weight:600;">→ 快速学习 &amp; 拥抱变化</span></div>
+        <div><span>▸</span> 日常用 AI 辅助推品话术撰写与竞品内容分析 <span style="color:#00a6a7;font-weight:600;">→ 效率意识 &amp; 工具敏感度</span></div>
+      </div>
+    </div>
+  </aside>
+
+  <main class="main">
+
+    <div>
+      <div class="name">凌金婵</div>
+      <div class="tagline">岭南师范学院 · 数智经济与贸易 · 2027届本科</div>
+      <div class="self-intro">
+        运营自有抖音账号 2 年，熟悉平台<span style="color:#007e7e;font-weight:600;">内容推荐机制、直播生态与用户行为路径</span>。独立跑通精选联盟达人带货合作全流程——从<span style="color:#1a1a1a;font-weight:500;">达人筛选、商务建联、选品推品到数据复盘</span>，理解达人合作的分佣模式与流量逻辑。专业课程涵盖大数据分析、Python，善于用指标衡量运营动作。目标岗位：<span style="color:#1a1a1a;font-weight:500;">抖音达人商务运营</span>。
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title"><span class="dot"></span>专业技能</div>
+      <div class="skills-bar">
+        <span class="skill-chip">抖音运营</span>
+        <span class="skill-chip">精选联盟</span>
+        <span class="skill-chip">达人商务对接</span>
+        <span class="skill-chip">直播带货</span>
+        <span class="skill-chip">数据分析</span>
+        <span class="skill-chip">Excel / WPS</span>
+        <span class="skill-chip">短视频策划</span>
+        <span class="skill-chip">剪映 / CapCut</span>
+        <span class="skill-chip">Claude Code</span>
+        <span class="skill-chip">Hermes</span>
+        <span class="skill-chip">Word / Excel / PPT</span>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title"><span class="dot"></span>达人商务 & 直播实践</div>
+
+      <div class="exp-item">
+        <div class="exp-header">
+          <span class="exp-title">抖音精选联盟 · 达人带货合作项目</span>
+          <span class="exp-date">2024.03 — 04</span>
+        </div>
+        <ul class="exp-detail">
+          <li>独立完成达人带货合作全流程：达人筛选与初步建联 → 根据达人账号调性做选品匹配 → 优化推品话术与利益点 → 跟进直播间上架执行</li>
+          <li>逐场追踪直播数据，拆解流量漏斗核心指标——<span class="metric">曝光→点击转化率</span>、<span class="metric">人均停留时长</span>、<span class="metric">商品点击→成交转化率</span>，针对性迭代话术与选品方向</li>
+          <li>深入理解抖音直播生态与达人合作模式：精选联盟分佣机制、自然流量推荐逻辑、达人矩阵的初步筛选标准</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title"><span class="dot"></span>平台运营经验</div>
+
+      <div class="exp-item">
+        <div class="exp-header">
+          <span class="exp-title">抖音美食制作账号 · 从零搭建与运营</span>
+          <span class="exp-date">2024 — 至今</span>
+        </div>
+        <ul class="exp-detail">
+          <li>从零运营垂类账号 2 年，通过持续内容测试与数据复盘验证内容策略：<span class="metric">高饱和度画面</span> + <span class="metric">前3秒钩子</span> + <span class="metric">情绪共鸣文案</span></li>
+          <li>单条最高播放 <span class="metric">150万+</span>，<span class="metric">7条万赞</span>，累计 <span class="metric">5,000+</span> 粉丝；已跑通商业变现——品牌置换、图文推广（单条 <span class="metric">200-300元</span>）、音乐推广</li>
+          <li>理解抖音内容推荐逻辑与用户行为路径，能从内容侧反哺达人推品的内容脚本设计</li>
+        </ul>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-header">
+          <span class="exp-title">小红书 · 跨平台内容迁移</span>
+          <span class="exp-date">2026</span>
+        </div>
+        <ul class="exp-detail">
+          <li>将抖音内容方法论迁移至小红书，针对社区调性调整封面与文案节奏，首帖零投流获 <span class="metric">30,000+ 浏览</span>、互动率约 <span class="metric">5%</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title"><span class="dot"></span>AI 工具应用</div>
+
+      <div class="exp-item">
+        <div class="exp-header">
+          <span class="exp-title">AI 驱动营销内容自动化生产 · 课程项目</span>
+        </div>
+        <ul class="exp-detail">
+          <li>搭建 AI 内容生产链路：<span class="metric">DeepSeek</span> 生成产品分镜脚本与推广文案 → <span class="metric">即梦</span> 生成视频素材 → <span class="metric">剪映</span> 剪辑成片，实现营销广告的自动化产出</li>
+          <li>日常使用 <span class="metric">Claude Code</span>、<span class="metric">Hermes</span> 辅助达人推品话术撰写、商品卖点提炼与竞品内容分析</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title"><span class="dot"></span>在校经历</div>
+
+      <div class="exp-item">
+        <div class="exp-header">
+          <span class="exp-title">院级宣传中心 · 摄影干部</span>
+          <span class="exp-date">2023.09 — 至今</span>
+        </div>
+        <ul class="exp-detail">
+          <li>负责学院大型活动摄影记录与公众号视觉素材输出，累计供稿 <span class="metric">50+ 篇</span></li>
+          <li>与团队协作完成选题策划、图文排版与内容发布，积累了跨部门沟通与项目推进经验</li>
+        </ul>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-header">
+          <span class="exp-title">独立家教 · 3 年持续运营</span>
+          <span class="exp-date">2024.03 — 至今</span>
+        </div>
+        <ul class="exp-detail">
+          <li>独立完成获客引流→课程定价→一对一教学交付的商业闭环，外宿租房独立运营，学业与经营并行 3 年零间断</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="section" style="margin-top:2px;">
+      <div class="section-title"><span class="dot"></span>教育背景</div>
+      <div class="edu-row">
+        <strong>岭南师范学院</strong> · 数智经济与贸易 · 本科 · 2023.09 — 2027.06<br>
+        主修：大数据分析与应用 · 大数据与人工智能 · Python · 量化投资 · 国际贸易实务 · 国际金融 · 统计学
+      </div>
+    </div>
+
+  </main>
+
+</div>
+
+</body>
+</html>
