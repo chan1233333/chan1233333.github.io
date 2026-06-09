@@ -57,20 +57,29 @@ animation:breatheLight 4.2s ease-in-out infinite;will-change:opacity}
 #hero{position:relative;height:100vh;display:flex;align-items:center;overflow:hidden}
 .hero-inner{position:relative;z-index:3;padding-left:var(--left-padding);pointer-events:none}
 .hero-title{display:flex;flex-direction:column;gap:0.05em;line-height:0.9}
-.hero-title .title-line{font-family:'Franklin Gothic Heavy','Franklin Gothic','Inter','Helvetica Neue',sans-serif;font-weight:900;font-size:var(--title-size);letter-spacing:-0.025em;text-transform:uppercase;background:linear-gradient(180deg,#fff 0%,#f0f0f0 18%,#d4d4d4 40%,#9a9a9a 68%,#6b6b6b 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;filter:drop-shadow(3px 6px 12px rgba(0,0,0,0.75)) drop-shadow(1px 2px 4px rgba(0,0,0,0.55))}
+.hero-title .title-line{font-family:'Franklin Gothic Heavy','Franklin Gothic','Inter','Helvetica Neue',sans-serif;font-weight:900;font-size:var(--title-size);letter-spacing:-0.025em;text-transform:uppercase;background:linear-gradient(180deg,#fff 0%,#f0f0f0 18%,#d4d4d4 40%,#9a9a9a 68%,#6b6b6b 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;filter:drop-shadow(3px 6px 12px rgba(0,0,0,0.75)) drop-shadow(1px 2px 4px rgba(0,0,0,0.55));
+  transition:transform .15s ease-out,filter .25s ease;
+  will-change:transform}
 
-.hero-sub{font-family:'JetBrains Mono',monospace;font-size:0.82rem;letter-spacing:0.06em;color:rgba(255,255,255,0.45);margin-top:1.6rem;max-width:520px;line-height:1.7}
+/* Mouse parallax: each line shifts differently */
+.line-1{--shift:6px;z-index:3}
+.line-2{--shift:4px;z-index:2}
+.line-3{--shift:2px;z-index:1}
+
+.hero-sub{font-family:'JetBrains Mono',monospace;font-size:0.82rem;letter-spacing:0.06em;color:rgba(255,255,255,0.45);margin-top:1.6rem;max-width:520px;line-height:1.7;
+  transition:transform .2s ease-out;will-change:transform;--shift:1px}
 .hero-sub em{color:var(--pink);font-style:normal;font-weight:600}
 
 /* ── Floating tags ── */
 .float-tags{position:absolute;inset:0;z-index:2;pointer-events:none}
-.float-tag{position:absolute;font-family:'JetBrains Mono',monospace;font-size:0.68rem;letter-spacing:0.1em;color:rgba(255,255,255,0.28)}
+.float-tag{position:absolute;font-family:'JetBrains Mono',monospace;font-size:0.68rem;letter-spacing:0.1em;color:rgba(255,255,255,0.28);
+  transition:transform .25s ease-out;will-change:transform}
 .float-tag::before{content:'◆ ';color:var(--pink);font-size:0.5rem;vertical-align:middle;opacity:0.6}
-.tag-content{top:22%;right:12%}
-.tag-data{top:48%;right:8%}
-.tag-ai{top:72%;right:14%}
-.tag-brand{top:18%;left:8%}
-.tag-live{top:65%;left:11%}
+.tag-content{top:22%;right:12%;--speed:0.8}
+.tag-data{top:48%;right:8%;--speed:0.6}
+.tag-ai{top:72%;right:14%;--speed:0.5}
+.tag-brand{top:18%;left:8%;--speed:0.7}
+.tag-live{top:65%;left:11%;--speed:0.45}
 
 /* ── Scroll indicator ── */
 .scroll-indicator{position:absolute;bottom:48px;left:50%;transform:translateX(-50%);z-index:5;pointer-events:none;display:flex;flex-direction:column;align-items:center;gap:8px}
@@ -78,26 +87,6 @@ animation:breatheLight 4.2s ease-in-out infinite;will-change:opacity}
 .scroll-line::after{content:'';position:absolute;top:0;left:0;width:100%;height:60%;background:linear-gradient(0deg,transparent 0%,var(--pink) 100%);animation:scrollDown 2s ease-in-out infinite}
 @keyframes scrollDown{0%{transform:translateY(-100%)}100%{transform:translateY(100%)}}
 .scroll-text{font-family:'JetBrains Mono',monospace;font-size:0.68rem;letter-spacing:0.08em;color:rgba(255,255,255,0.25)}
-
-/* ── Data panel ── */
-#data-panel{position:fixed;right:64px;top:50%;transform:translateY(-50%);z-index:4;pointer-events:none;
-  display:flex;flex-direction:column;gap:0;opacity:0;
-  transition:opacity 1.2s ease .6s}
-#data-panel.visible{opacity:1}
-.data-stat{display:flex;align-items:baseline;gap:10px;padding:6px 0}
-.data-stat .stat-num{font-family:'Franklin Gothic Heavy','Franklin Gothic','Inter',sans-serif;
-  font-size:2.8rem;font-weight:900;line-height:1;
-  background:linear-gradient(180deg,rgba(255,255,255,0.55) 0%,rgba(255,255,255,0.18) 100%);
-  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
-  transition:color .5s}
-.data-stat .stat-label{font-family:'JetBrains Mono',monospace;font-size:0.62rem;
-  letter-spacing:0.08em;color:rgba(255,255,255,0.22);white-space:nowrap}
-.data-stat:nth-child(2) .stat-num{font-size:2.2rem}
-.data-stat:nth-child(3) .stat-num{font-size:1.8rem}
-.data-stat:nth-child(4) .stat-num{font-size:1.6rem}
-/* Pink highlight on the top number */
-.data-stat:first-child .stat-num{background:linear-gradient(180deg,rgba(255,255,255,0.8) 0%,rgba(239,76,172,0.45) 100%);
-  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
 
 /* ===== CONTENT SECTIONS ===== */
 .content-section{padding:140px 80px;position:relative;z-index:3}
@@ -384,9 +373,9 @@ body::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.1);border-radius:2px
   <section id="hero">
     <div class="hero-inner">
       <div class="hero-title">
-        <span class="title-line">WELCOME</span>
-        <span class="title-line">TO MY</span>
-        <span class="title-line">SPACE</span>
+        <span class="title-line line-1">WELCOME</span>
+        <span class="title-line line-2">TO MY</span>
+        <span class="title-line line-3">SPACE</span>
       </div>
       <div class="hero-sub">
         数智经济与贸易 · 2027届<br>
@@ -400,14 +389,6 @@ body::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.1);border-radius:2px
       <span class="float-tag tag-brand">COMMERCE</span>
       <span class="float-tag tag-live">LIVE STREAMING</span>
     </div>
-    <!-- ── Data panel ── -->
-    <div id="data-panel">
-      <div class="data-stat"><span class="stat-num">150万</span><span class="stat-label">最高播放</span></div>
-      <div class="data-stat"><span class="stat-num">30,000+</span><span class="stat-label">小红书浏览</span></div>
-      <div class="data-stat"><span class="stat-num">5,000+</span><span class="stat-label">粉丝</span></div>
-      <div class="data-stat"><span class="stat-num">1,500+</span><span class="stat-label">互动</span></div>
-    </div>
-
     <div class="scroll-indicator" id="scrollIndicator">
       <div class="scroll-line"></div>
       <div class="scroll-text">SCROLL OR CLICK</div>
@@ -716,8 +697,6 @@ var sectionIds=Array.from(sections).map(function(s){return s.id;});
 var heroEl=document.getElementById('hero');
 var heroInner=heroEl.querySelector('.hero-inner');
 var heroTags=heroEl.querySelectorAll('.float-tag');
-var dataPanel=document.getElementById('data-panel');
-
 // Collect data-animate elements (exclude spring elements)
 var animEls=document.querySelectorAll('[data-animate]:not([data-spring])');
 
@@ -755,13 +734,6 @@ function tick(){
     heroTags[i].style.transform='translateY('+(-heroProgress*40)+'px)';
   }
 
-  // Data panel: fade in after load, fade out with scroll
-  if(dataPanel){
-    if(scrollY<30){dataPanel.classList.add('visible')}else{dataPanel.classList.remove('visible')}
-    dataPanel.style.opacity=1-heroProgress;
-    dataPanel.style.transform='translateY('+(-50-heroProgress*50)+'%)';
-  }
-
   // NAV active state
   var activeSection='hero';
   for(var j=sectionIds.length-1;j>=0;j--){
@@ -796,6 +768,59 @@ function tick(){
 }
 
 tick();
+
+// ── Mouse parallax: hero text floats with cursor ──
+(function(){
+  var mx=0,my=0,tx=0,ty=0;
+  var lines=[document.querySelector('.line-1'),document.querySelector('.line-2'),document.querySelector('.line-3')];
+  var sub=document.querySelector('.hero-sub');
+  var tags=document.querySelectorAll('.float-tag');
+
+  // Interpolated values for smooth deceleration
+  var lx=0,ly=0; // lagged x/y
+
+  function updateParallax(){
+    // Smooth follow: lag approaches target each frame
+    lx+=(mx-lx)*0.08;
+    ly+=(my-ly)*0.08;
+
+    // Title lines: each drifts differently
+    if(lines[0])lines[0].style.transform='translate('+(lx*12)+'px,'+(ly*10)+'px)';
+    if(lines[1])lines[1].style.transform='translate('+(lx*8)+'px,'+(ly*7)+'px)';
+    if(lines[2])lines[2].style.transform='translate('+(lx*5)+'px,'+(ly*4)+'px)';
+
+    // Subtitle
+    if(sub)sub.style.transform='translate('+(lx*3)+'px,'+(ly*2.5)+'px)';
+
+    // Floating tags
+    if(tags.length){
+      for(var i=0;i<tags.length;i++){
+        var spd=parseFloat(tags[i].style.getPropertyValue('--speed'))||0.5;
+        tags[i].style.transform='translate('+(lx*14*spd)+'px,'+(ly*12*spd)+'px)';
+      }
+    }
+    requestAnimationFrame(updateParallax);
+  }
+
+  document.addEventListener('mousemove',function(e){
+    mx=(e.clientX/window.innerWidth-0.5)*2;  // -1 to 1
+    my=(e.clientY/window.innerHeight-0.5)*2;
+  });
+
+  // Reset on touch end / mouse leave
+  document.addEventListener('mouseleave',function(){mx=0;my=0;});
+  document.addEventListener('touchend',function(){mx=0;my=0;});
+
+  // Touch support
+  document.addEventListener('touchmove',function(e){
+    if(e.touches.length>0){
+      mx=(e.touches[0].clientX/window.innerWidth-0.5)*2;
+      my=(e.touches[0].clientY/window.innerHeight-0.5)*2;
+    }
+  },{passive:true});
+
+  updateParallax();
+})();
 
 // ── Spring animation observer for work cards ──
 var springEls=document.querySelectorAll('[data-spring]');
