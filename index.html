@@ -171,6 +171,24 @@ animation:breatheLight 4.2s ease-in-out infinite;will-change:opacity}
 .video-cover{border-radius:16px;overflow:hidden}
 .video-cover video{width:100%;display:block;border-radius:16px;max-height:420px}
 
+/* ── AI video row ── */
+.ai-vid-row{display:flex;gap:32px}
+.ai-vid-card{flex:1 1 0;border-radius:16px;overflow:hidden;
+  border:1px solid rgba(239,76,172,0.08);
+  background:rgba(255,255,255,0.01);position:relative;
+  transition:transform .45s cubic-bezier(0.34,1.56,0.64,1),box-shadow .45s ease}
+.ai-vid-card:hover{transform:translateY(-4px) scale(1.02);
+  box-shadow:0 8px 36px rgba(239,76,172,0.12),0 12px 48px rgba(0,0,0,0.4)}
+.ai-vid-card video{width:100%;display:block;border-radius:16px;
+  max-height:380px;object-fit:cover;aspect-ratio:4/3;background:#000}
+.ai-vid-label{font-family:'JetBrains Mono',monospace;font-size:.58rem;
+  letter-spacing:.08em;color:rgba(255,255,255,.3);text-align:center;
+  padding:12px 0 8px;transition:color .35s}
+.ai-vid-card:hover .ai-vid-label{color:var(--pink)}
+@media(max-width:767px){
+ .ai-vid-row{flex-direction:column;gap:24px}
+}
+
 /* ── Text side ── */
 .work-text{display:flex;flex-direction:column;gap:12px}
 .work-text .work-category{
@@ -531,10 +549,21 @@ body::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.1);border-radius:2px
   <!-- ── AI VIDEO SHOWCASE ── -->
   <section class="content-section" id="ai-video" style="padding-top:60px">
     <div class="section-inner">
-      <div class="video-cover" data-animate>
-        <video src="ai广告.mp4" controls playsinline preload="metadata" id="aiVideo"></video>
+      <div class="ai-vid-row" data-animate>
+        <div class="ai-vid-card">
+          <video src="ai广告.mp4" controls playsinline preload="metadata" id="aiVideo"></video>
+          <div class="ai-vid-label">AI 营销广告</div>
+        </div>
+        <div class="ai-vid-card">
+          <video src="ai视频/ai猫爬架视频.mp4" controls playsinline preload="metadata"></video>
+          <div class="ai-vid-label">AI 猫爬架</div>
+        </div>
+        <div class="ai-vid-card">
+          <video src="ai视频/ai猫罐头广告.mp4" controls playsinline preload="metadata"></video>
+          <div class="ai-vid-label">AI 猫罐头</div>
+        </div>
       </div>
-      <div style="margin-top:20px;max-width:600px" data-animate>
+      <div style="margin-top:28px;max-width:600px" data-animate>
         <span style="font-family:'JetBrains Mono',monospace;font-size:.68rem;letter-spacing:.12em;color:var(--pink);opacity:.85">AI CONTENT PRODUCTION</span>
         <p style="font-family:'Inter','Noto Sans SC',sans-serif;font-size:1rem;line-height:1.8;color:var(--body);margin-top:12px">
           DeepSeek 描述产品外观、作用与功能 <em style="color:var(--pink);font-style:normal;font-weight:600">→</em> 生成分镜 prompt <em style="color:var(--pink);font-style:normal;font-weight:600">→</em> 即梦（Jimeng）生成视频 <em style="color:var(--pink);font-style:normal;font-weight:600">→</em> 剪映剪辑成片。代表 AI 时代内容生产的<em style="color:var(--pink);font-style:normal;font-weight:600">新范式</em>。
