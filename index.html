@@ -491,9 +491,9 @@ body::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.1);border-radius:2px
 <nav class="navbar" id="navbar">
   <span class="logo" onclick="scrollToSection('hero')">AMELIE LING</span>
   <ul class="nav-links">
-    <li><a onclick="scrollToSection('works')">作品</a></li>
-    <li><a onclick="scrollToSection('xiaoguai')">小乖</a></li>
     <li><a onclick="scrollToSection('about')">关于</a></li>
+    <li><a onclick="scrollToSection('works')">作品</a></li>
+    <li><a onclick="scrollToSection('xiaoguai')">日常</a></li>
     <li><a onclick="scrollToSection('experience')">经历</a></li>
     <li><a onclick="scrollToSection('contact')">联系</a></li>
   </ul>
@@ -903,7 +903,7 @@ function tick(){
     var txt=a.textContent;
     a.classList.toggle('active',
       (txt==='作品'&&activeSection==='works')||
-      (txt==='小乖'&&activeSection==='xiaoguai')||
+      (txt==='日常'&&activeSection==='xiaoguai')||
       (txt==='关于'&&activeSection==='about')||
       (txt==='经历'&&activeSection==='experience')||
       (txt==='联系'&&activeSection==='contact'));
