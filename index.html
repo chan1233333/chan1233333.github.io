@@ -1202,8 +1202,32 @@ document.addEventListener('keydown',function(e){
 
 <!-- ════ LIGHTBOX ════ -->
 <script>
-// AI video starts at 30% volume
-(function(){var v=document.getElementById('aiVideo');if(v)v.volume=0.2;})();
+// AI videos: mutual exclusion + volume 20% + auto-stop
+(function(){
+  var cards=document.querySelectorAll('.ai-vid-card video');
+  if(!cards.length)return;
+
+  cards.forEach(function(v){
+    v.volume=0.2;v.removeAttribute('loop');
+
+    function pauseOthers(){
+      cards.forEach(function(other){
+        if(other!==v){other.pause();other.currentTime=0;other.removeAttribute('controls')}
+      });
+    }
+
+    v.addEventListener('play',function(){pauseOthers()});
+    v.addEventListener('ended',function(){
+      v.pause();v.removeAttribute('controls');
+    });
+    v.addEventListener('click',function(){
+      if(!v.hasAttribute('controls')){
+        v.setAttribute('controls','controls');
+        v.volume=0.2;v.play().catch(function(){});
+      }
+    });
+  });
+})();
 
 // Generic copy-to-clipboard
 function copyText(e,text){
