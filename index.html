@@ -344,6 +344,59 @@ body::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.1);border-radius:2px
  .navbar .nav-links li a{padding:8px 4px}
  .navbar .logo{padding:6px 0}
 }
+
+/* ════ XIAO GUAI — cat intro ════ */
+#xiaoguai{padding-top:140px;padding-bottom:160px}
+.cat-intro{display:flex;align-items:center;gap:80px;max-width:1000px;margin:0 auto}
+
+/* ── Photo side: torn paper + halftone + shadow ── */
+.cat-photo-side{flex:0 0 420px;position:relative}
+.cat-torn-frame{position:relative;display:inline-block;
+  filter:url(#tornEdge) grayscale(100%) contrast(.92);
+  -webkit-filter:grayscale(100%) contrast(.92);
+  transition:transform .5s cubic-bezier(0.34,1.56,0.64,1)}
+.cat-torn-frame:hover{transform:rotate(-1deg) scale(1.02)}
+.cat-torn-frame img{display:block;max-width:100%;height:auto;
+  border-radius:4px 12px 8px 16px}
+/* Halftone dot overlay */
+.cat-halftone{position:absolute;inset:0;pointer-events:none;opacity:.22;mix-blend-mode:multiply;
+  background-image:repeating-radial-gradient(circle at 2px 4px,
+    #000 0,#000 1.2px,transparent 1.5px,transparent 4px);
+  background-size:6px 6px;border-radius:4px 12px 8px 16px;z-index:2}
+/* Soft shadow layer handled by SVG feDropShadow */
+
+/* ── SVG torn paper filter ── */
+.cat-filter-svg{position:absolute;width:0;height:0}
+
+/* ── Text side ── */
+.cat-text-side{flex:1;
+  opacity:0;transform:translateY(40px);
+  will-change:transform,opacity}
+.cat-text-side .cat-label{font-family:'JetBrains Mono',monospace;font-size:.62rem;
+  letter-spacing:.14em;color:var(--pink);opacity:.8;text-transform:uppercase}
+.cat-text-side .cat-name{font-family:'Inter','Noto Sans SC',sans-serif;
+  font-size:3rem;font-weight:900;line-height:1.1;color:#fff;
+  margin:10px 0 20px;letter-spacing:-.01em}
+.cat-text-side .cat-name em{font-style:normal;
+  background:linear-gradient(135deg,#ef4cac,#f8a0c8);-webkit-background-clip:text;
+  -webkit-text-fill-color:transparent}
+.cat-text-side .cat-story{font-family:'Inter','Noto Sans SC',sans-serif;
+  font-size:.95rem;line-height:2;color:var(--white-70)}
+.cat-text-side .cat-story em{color:var(--pink);font-style:normal;font-weight:600}
+.cat-text-side .cat-stats{display:flex;gap:32px;margin-top:24px;
+  font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:.1em;
+  color:rgba(255,255,255,.35)}
+.cat-text-side .cat-stats span::before{content:'◆ ';color:var(--pink);font-size:.4rem;
+  vertical-align:middle;margin-right:4px;opacity:.6}
+
+/* ── Mobile ── */
+@media(max-width:767px){
+ .cat-intro{flex-direction:column;gap:40px}
+ .cat-photo-side{flex:0 0 auto;max-width:300px;margin:0 auto}
+ .cat-text-side .cat-name{font-size:2rem}
+ .cat-text-side .cat-story{font-size:.85rem;line-height:1.8}
+ .cat-text-side .cat-stats{gap:18px;flex-wrap:wrap}
+}
 </style>
 </head>
 <body>
@@ -359,7 +412,7 @@ body::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.1);border-radius:2px
   <span class="logo" onclick="scrollToSection('hero')">AMELIE LING</span>
   <ul class="nav-links">
     <li><a onclick="scrollToSection('works')">作品</a></li>
-
+    <li><a onclick="scrollToSection('xiaoguai')">小乖</a></li>
     <li><a onclick="scrollToSection('about')">关于</a></li>
     <li><a onclick="scrollToSection('experience')">经历</a></li>
     <li><a onclick="scrollToSection('contact')">联系</a></li>
@@ -470,6 +523,44 @@ body::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.1);border-radius:2px
             <span class="work-category">零投流冷启动</span>
             <h2 class="work-title">小红书首帖</h2>
             <span class="work-sub">30,000+ 浏览 · 1,500+ 互动</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── XIAO GUAI ── -->
+  <section class="content-section" id="xiaoguai">
+    <!-- SVG filter: torn paper edge + drop shadow -->
+    <svg class="cat-filter-svg" aria-hidden="true">
+      <filter id="tornEdge" x="-10%" y="-10%" width="130%" height="130%">
+        <feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="5" result="noise"/>
+        <feDisplacementMap in="SourceGraphic" in2="noise" scale="14" xChannelSelector="R" yChannelSelector="G" result="displaced"/>
+        <feDropShadow in="displaced" dx="5" dy="10" stdDeviation="16" flood-color="#000" flood-opacity="0.38"/>
+        <feDropShadow in="displaced" dx="2" dy="4" stdDeviation="6" flood-color="#ef4cac" flood-opacity="0.08"/>
+      </filter>
+    </svg>
+
+    <div class="section-inner">
+      <h1 class="section-heading" data-animate>Meet<br>Xiao Guai</h1>
+      <div class="cat-intro">
+        <div class="cat-photo-side" data-animate>
+          <div class="cat-torn-frame">
+            <img src="小乖/介绍页抠图.jpg" alt="小乖 - 银白长毛猫" loading="lazy" decoding="async">
+            <div class="cat-halftone"></div>
+          </div>
+        </div>
+        <div class="cat-text-side" data-animate>
+          <span class="cat-label">My Cat · My Muse</span>
+          <h2 class="cat-name">这是<em>小乖</em></h2>
+          <p class="cat-story">
+            一只银白色的长毛小猫，从她<em>两个多月大</em>来到我身边，到现在已经是我的<em>专属模特</em>了。<br><br>
+            她喜欢趴在键盘旁边看我写代码，也喜欢在我拍视频时<em>突然入镜</em>。这里的每一张照片、每一段视频，都是属于我们的日常碎片。
+          </p>
+          <div class="cat-stats">
+            <span>银白长毛</span>
+            <span>2月龄→10月龄</span>
+            <span>超黏人</span>
           </div>
         </div>
       </div>
@@ -746,7 +837,7 @@ function tick(){
     var txt=a.textContent;
     a.classList.toggle('active',
       (txt==='作品'&&activeSection==='works')||
-
+      (txt==='小乖'&&activeSection==='xiaoguai')||
       (txt==='关于'&&activeSection==='about')||
       (txt==='经历'&&activeSection==='experience')||
       (txt==='联系'&&activeSection==='contact'));
