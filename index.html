@@ -345,106 +345,101 @@ body::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.1);border-radius:2px
  .navbar .logo{padding:6px 0}
 }
 
-/* ════ XIAO GUAI — cat sanctuary ════ */
-#xiaoguai{background:linear-gradient(180deg,#fdfaf7 0%,#faf5f0 30%,#f8f0ea 60%,#faf5f0 100%);position:relative;padding-top:140px;padding-bottom:160px}
-/* Hide the global dark breathing glow in this section */
-#xiaoguai::before{content:'';position:absolute;inset:0;z-index:0;pointer-events:none;
-  background:linear-gradient(180deg,rgba(250,240,235,0.3) 0%,transparent 40%,transparent 60%,rgba(250,240,235,0.3) 100%)}
-#xiaoguai .section-inner{position:relative;z-index:2}
-#xiaoguai .section-heading{
-  background:linear-gradient(180deg,#4a3528 0%,#8a7568 100%);
-  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+/* ════ XIAO GUAI — cat gallery ════ */
+#xiaoguai{padding-top:140px;padding-bottom:80px}
+.xg-label{font-family:'JetBrains Mono',monospace;font-size:.6rem;letter-spacing:.16em;
+  color:var(--pink);opacity:.75;text-transform:uppercase;margin-bottom:10px}
 
-/* ── Cat photo + intro ── */
-.cat-hero{display:flex;align-items:center;gap:80px;max-width:960px;margin:0 auto}
-.cat-photo-side{flex:0 0 380px;position:relative}
-.cat-torn-frame{position:relative;display:inline-block;
-  filter:url(#tornEdge);
-  -webkit-filter:url(#tornEdge);
+/* ── SVG torn paper filter ── */
+.xg-filter-svg{position:absolute;width:0;height:0}
+
+/* ════ PHOTO CAROUSEL ════ */
+.xg-photos-wrap{position:relative;margin-bottom:40px}
+.xg-photos-track{display:flex;gap:32px;overflow-x:auto;overflow-y:hidden;
+  scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;
+  scrollbar-width:none;padding:20px 0 28px;cursor:grab;user-select:none}
+.xg-photos-track::-webkit-scrollbar{display:none}
+.xg-photos-track:active{cursor:grabbing}
+.xg-photo{flex:0 0 auto;scroll-snap-align:start;
+  transition:transform .5s cubic-bezier(0.34,1.56,0.64,1),box-shadow .5s ease;
+  will-change:transform}
+.xg-photo:hover{z-index:5}
+.xg-photo img{display:block;height:340px;width:auto;border-radius:12px;
+  filter:url(#tornEdge);-webkit-filter:url(#tornEdge);
   transition:transform .5s cubic-bezier(0.34,1.56,0.64,1)}
-.cat-torn-frame:hover{transform:rotate(-1deg) scale(1.02)}
-.cat-torn-frame img{display:block;max-width:100%;height:auto;
-  border-radius:4px 14px 8px 18px}
-/* Color soften overlay — keeps silver fur, reduces contrast */
-.cat-soften{position:absolute;inset:0;pointer-events:none;opacity:.12;
-  background:linear-gradient(135deg,rgba(210,190,180,0.6) 0%,rgba(245,235,225,0.3) 50%,rgba(220,200,185,0.5) 100%);
-  border-radius:4px 14px 8px 18px;z-index:1;mix-blend-mode:soft-light}
-/* Subtle halftone — barely visible, adds print feel */
-.cat-halftone{position:absolute;inset:0;pointer-events:none;opacity:.1;mix-blend-mode:soft-light;
-  background-image:repeating-radial-gradient(circle at 2px 4px,
-    #c4a898 0,#c4a898 1px,transparent 1.5px,transparent 4px);
-  background-size:6px 6px;border-radius:4px 14px 8px 18px;z-index:2}
+.xg-photo:hover img{transform:scale(1.04);
+  box-shadow:0 8px 36px rgba(239,76,172,0.2),0 16px 56px rgba(0,0,0,0.4)}
 
-/* ── SVG filter hidden ── */
-.cat-filter-svg{position:absolute;width:0;height:0}
+/* ── Photo glare ── */
+.xg-photo .xg-glare{position:absolute;inset:0;z-index:2;pointer-events:none;
+  opacity:0;transition:opacity .35s;border-radius:12px;overflow:hidden;
+  background:radial-gradient(circle 180px at var(--gx,50%) var(--gy,50%),
+    rgba(255,255,255,0.18) 0%,rgba(255,255,255,0.05) 35%,transparent 65%)}
+.xg-photo:hover .xg-glare{opacity:1}
 
-/* ── Text ── */
-.cat-text-side{flex:1;
-  opacity:0;transform:translateY(40px);
-  will-change:transform,opacity}
-.cat-text-side .cat-label{font-family:'JetBrains Mono',monospace;font-size:.58rem;
-  letter-spacing:.16em;color:#c4a0c0;text-transform:uppercase}
-.cat-text-side .cat-name{font-family:'Inter','Noto Sans SC',serif;
-  font-size:3rem;font-weight:900;line-height:1.1;color:#3a2a20;
-  margin:10px 0 20px;letter-spacing:-.01em}
-.cat-text-side .cat-name em{font-style:normal;
-  background:linear-gradient(135deg,#d490a8,#c8a0b8);-webkit-background-clip:text;
-  -webkit-text-fill-color:transparent}
-.cat-text-side .cat-story{font-family:'Inter','Noto Sans SC',serif;
-  font-size:.92rem;line-height:2.1;color:#8a7a70}
-.cat-text-side .cat-story em{color:#c490a0;font-style:normal;font-weight:600}
-.cat-text-side .cat-stats{display:flex;gap:32px;margin-top:24px;
-  font-family:'JetBrains Mono',monospace;font-size:.6rem;letter-spacing:.12em;
-  color:rgba(160,140,130,.55)}
-.cat-text-side .cat-stats span::before{content:'· ';color:#c4a0c0;font-size:.8rem;
-  vertical-align:middle;margin-right:4px;font-weight:700}
+/* ── Carousel scroll hint ── */
+.xg-scroll-hint{position:absolute;right:0;top:50%;transform:translateY(-50%);
+  font-family:'JetBrains Mono',monospace;font-size:.55rem;letter-spacing:.1em;
+  color:rgba(255,255,255,.15);pointer-events:none;
+  animation:xgHintFade 3s ease-in-out infinite;z-index:3}
+@keyframes xgHintFade{0%,100%{opacity:.15}50%{opacity:.4}}
 
-/* ════ 2×2 VIDEO GRID ════ */
-.cat-videos{margin-top:120px;max-width:900px;margin-left:auto;margin-right:auto}
-.cat-videos-title{text-align:center;font-family:'JetBrains Mono',monospace;font-size:.62rem;
-  letter-spacing:.16em;color:rgba(160,140,130,.5);text-transform:uppercase;margin-bottom:48px}
-.cat-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px 56px}
-.cat-vid-card{position:relative;
-  filter:url(#tornEdge);
-  -webkit-filter:url(#tornEdge);
-  transition:transform .5s cubic-bezier(0.34,1.56,0.64,1);
-  cursor:pointer}
-.cat-vid-card:hover{transform:translateY(-6px) scale(1.03)}
-.cat-vid-card video{width:100%;display:block;border-radius:4px 12px 6px 14px;
-  object-fit:cover;aspect-ratio:4/3;
-  opacity:.92;transition:opacity .4s}
-.cat-vid-card:hover video{opacity:1}
-/* Soft color wash on each video */
-.cat-vid-wash{position:absolute;inset:0;pointer-events:none;opacity:.1;mix-blend-mode:soft-light;
-  background:linear-gradient(160deg,rgba(220,200,190,0.5) 0%,rgba(245,230,220,0.2) 50%,rgba(210,195,185,0.4) 100%);
-  border-radius:4px 12px 6px 14px;z-index:1}
-.cat-vid-card .vid-play{position:absolute;inset:0;z-index:2;display:flex;align-items:center;justify-content:center;
-  pointer-events:none;opacity:0;transition:opacity .3s,transform .45s cubic-bezier(0.34,1.56,0.64,1);transform:scale(.7)}
-.cat-vid-card:hover .vid-play{opacity:1;transform:scale(1)}
-.cat-vid-card .vid-play::after{content:'';width:38px;height:38px;border-radius:50%;
-  background:rgba(200,140,160,.5);box-shadow:0 0 24px rgba(200,140,160,.3)}
-.cat-vid-card .vid-play::before{content:'';position:absolute;z-index:1;
-  border-left:8px solid #fff;border-top:5px solid transparent;border-bottom:5px solid transparent;margin-left:3px}
-.cat-vid-label{text-align:center;font-family:'JetBrains Mono',monospace;font-size:.55rem;
-  letter-spacing:.1em;color:rgba(160,140,130,.4);margin-top:14px;transition:color .3s}
-.cat-vid-card:hover+.cat-vid-label{color:#c490a0}
+/* ════ VIDEO ROW ════ */
+.xg-videos-wrap{margin-top:32px}
+.xg-videos-track{display:flex;gap:36px;overflow-x:auto;overflow-y:hidden;
+  scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;
+  scrollbar-width:none;padding:16px 0 28px;cursor:grab}
+.xg-videos-track::-webkit-scrollbar{display:none}
+.xg-video{flex:0 0 auto;width:320px;scroll-snap-align:start;position:relative;
+  transition:transform .5s cubic-bezier(0.34,1.56,0.64,1),box-shadow .5s ease;
+  will-change:transform;border-radius:14px;overflow:hidden;
+  background:rgba(255,255,255,0.015);border:1px solid rgba(239,76,172,0.08);
+  box-shadow:0 2px 20px rgba(0,0,0,0.3)}
+.xg-video:hover{z-index:5;border-color:rgba(239,76,172,0.25);
+  box-shadow:0 6px 40px rgba(239,76,172,0.15),0 12px 48px rgba(0,0,0,0.45)}
+.xg-video video{width:100%;display:block;aspect-ratio:4/3;object-fit:cover;
+  filter:url(#tornEdge);-webkit-filter:url(#tornEdge)}
+.xg-video:hover video{filter:url(#tornEdge);-webkit-filter:url(#tornEdge)}
 
-/* ── Bottom decoration ── */
-.cat-footer{text-align:center;margin-top:64px;font-family:'JetBrains Mono',monospace;font-size:.55rem;
-  letter-spacing:.2em;color:rgba(180,160,150,.35)}
-.cat-footer::before{content:'✦ ';color:#d4b0c0}
-.cat-footer::after{content:' ✦';color:#d4b0c0}
+/* ── Video glare ── */
+.xg-video .xg-glare{position:absolute;inset:0;z-index:2;pointer-events:none;
+  opacity:0;transition:opacity .35s;overflow:hidden;
+  background:radial-gradient(circle 200px at var(--gx,50%) var(--gy,50%),
+    rgba(255,255,255,0.16) 0%,rgba(255,255,255,0.04) 35%,transparent 65%)}
+.xg-video:hover .xg-glare{opacity:1}
+
+/* ── Video label ── */
+.xg-vid-label{font-family:'JetBrains Mono',monospace;font-size:.55rem;
+  letter-spacing:.1em;color:rgba(255,255,255,.25);text-align:center;
+  margin-top:10px;transition:color .4s}
+.xg-video:hover .xg-vid-label{color:var(--pink)}
+
+/* ── Video play button ── */
+.xg-video .xg-play{position:absolute;inset:0;z-index:3;display:flex;
+  align-items:center;justify-content:center;pointer-events:none;
+  opacity:0;transform:scale(.5);
+  transition:opacity .3s ease,transform .5s cubic-bezier(0.34,1.56,0.64,1)}
+.xg-video:hover .xg-play{opacity:1;transform:scale(1)}
+.xg-video .xg-play::after{content:'';width:44px;height:44px;border-radius:50%;
+  background:rgba(239,76,172,0.55);box-shadow:0 0 28px rgba(239,76,172,0.4)}
+.xg-video .xg-play::before{content:'';position:absolute;z-index:1;
+  width:0;height:0;border-left:10px solid #fff;
+  border-top:6px solid transparent;border-bottom:6px solid transparent;margin-left:3px}
+
+/* ── Auto scroll dot indicators ── */
+.xg-dots{display:flex;gap:8px;justify-content:center;margin-top:20px}
+.xg-dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.12);
+  transition:all .4s;cursor:pointer}
+.xg-dot.active{background:var(--pink);box-shadow:0 0 10px rgba(239,76,172,.4);
+  width:20px;border-radius:3px}
 
 /* ── Mobile ── */
 @media(max-width:767px){
- #xiaoguai{padding-top:100px;padding-bottom:120px}
- .cat-hero{flex-direction:column;gap:40px}
- .cat-photo-side{flex:0 0 auto;max-width:260px;margin:0 auto}
- .cat-text-side .cat-name{font-size:2rem}
- .cat-text-side .cat-story{font-size:.82rem;line-height:1.9}
- .cat-text-side .cat-stats{gap:16px;flex-wrap:wrap}
- .cat-grid{grid-template-columns:1fr;gap:36px 0}
- .cat-videos{margin-top:80px}
+ #xiaoguai{padding-top:100px;padding-bottom:60px}
+ .xg-photo img{height:240px}
+ .xg-photos-track{gap:20px;padding:14px 0 20px}
+ .xg-video{width:250px}
+ .xg-videos-track{gap:24px;padding:12px 0 20px}
 }
 </style>
 </head>
@@ -580,83 +575,50 @@ body::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.1);border-radius:2px
 
   <!-- ── XIAO GUAI ── -->
   <section class="content-section" id="xiaoguai">
-    <!-- SVG filters: torn paper edge + soft shadow -->
-    <svg class="cat-filter-svg" aria-hidden="true">
+    <!-- SVG torn paper filter -->
+    <svg class="xg-filter-svg" aria-hidden="true">
       <filter id="tornEdge" x="-12%" y="-12%" width="130%" height="130%">
-        <feTurbulence type="fractalNoise" baseFrequency="0.032" numOctaves="5" result="noise"/>
-        <feDisplacementMap in="SourceGraphic" in2="noise" scale="15" xChannelSelector="R" yChannelSelector="G" result="displaced"/>
-        <feDropShadow in="displaced" dx="3" dy="8" stdDeviation="14" flood-color="#4a3020" flood-opacity="0.18"/>
-        <feDropShadow in="displaced" dx="2" dy="3" stdDeviation="5" flood-color="#c8a0b0" flood-opacity="0.06"/>
+        <feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="5" result="noise"/>
+        <feDisplacementMap in="SourceGraphic" in2="noise" scale="13" xChannelSelector="R" yChannelSelector="G" result="displaced"/>
+        <feDropShadow in="displaced" dx="4" dy="10" stdDeviation="16" flood-color="#000" flood-opacity="0.35"/>
+        <feDropShadow in="displaced" dx="2" dy="4" stdDeviation="6" flood-color="#ef4cac" flood-opacity="0.06"/>
       </filter>
     </svg>
 
     <div class="section-inner">
       <h1 class="section-heading" data-animate>Meet<br>Xiao Guai</h1>
 
-      <!-- Cat photo + intro -->
-      <div class="cat-hero">
-        <div class="cat-photo-side" data-animate>
-          <div class="cat-torn-frame">
-            <img src="小乖/介绍页抠图.jpg" alt="小乖 - 银白长毛猫" loading="lazy" decoding="async">
-            <div class="cat-soften"></div>
-            <div class="cat-halftone"></div>
-          </div>
+      <!-- Photo carousel -->
+      <div class="xg-photos-wrap" data-animate>
+        <span class="xg-label" style="display:block;margin-bottom:16px">Photo Diary</span>
+        <div class="xg-photos-track" id="xgPhotoTrack">
+          <div class="xg-photo"><img src="小乖/介绍页抠图.jpg" alt="小乖" loading="lazy"><div class="xg-glare"></div></div>
+          <div class="xg-photo"><img src="小乖/图片2.jpg" alt="小乖" loading="lazy"><div class="xg-glare"></div></div>
+          <div class="xg-photo"><img src="小乖/图片3.jpg" alt="小乖" loading="lazy"><div class="xg-glare"></div></div>
+          <div class="xg-photo"><img src="小乖/图片4.jpg" alt="小乖" loading="lazy"><div class="xg-glare"></div></div>
+          <div class="xg-photo"><img src="小乖/图片5.jpg" alt="小乖" loading="lazy"><div class="xg-glare"></div></div>
+          <div class="xg-photo"><img src="小乖/图片8.jpg" alt="小乖" loading="lazy"><div class="xg-glare"></div></div>
+          <div class="xg-photo"><img src="小乖/图片9.jpg" alt="小乖" loading="lazy"><div class="xg-glare"></div></div>
+          <div class="xg-photo"><img src="小乖/图片10.jpg" alt="小乖" loading="lazy"><div class="xg-glare"></div></div>
+          <div class="xg-photo"><img src="小乖/图片11.jpg" alt="小乖" loading="lazy"><div class="xg-glare"></div></div>
+          <div class="xg-photo"><img src="小乖/图片12.jpg" alt="小乖" loading="lazy"><div class="xg-glare"></div></div>
+          <div class="xg-photo"><img src="小乖/图片13.jpg" alt="小乖" loading="lazy"><div class="xg-glare"></div></div>
+          <div class="xg-photo"><img src="小乖/图片14.jpg" alt="小乖" loading="lazy"><div class="xg-glare"></div></div>
         </div>
-        <div class="cat-text-side" data-animate>
-          <span class="cat-label">My Cat · My Muse</span>
-          <h2 class="cat-name">这是<em>小乖</em></h2>
-          <p class="cat-story">
-            一只银白色的长毛小猫，从她<em>两个多月大</em>来到我身边，到现在已经是我的<em>专属模特</em>了。<br><br>
-            她喜欢趴在键盘旁边看我写代码，也喜欢在我拍视频时<em>突然入镜</em>。这里的每一张照片、每一段视频，都是属于我们的日常碎片。
-          </p>
-          <div class="cat-stats">
-            <span>银白长毛</span>
-            <span>2月龄→10月龄</span>
-            <span>超黏人</span>
-          </div>
-        </div>
+        <div class="xg-dots" id="xgPhotoDots"></div>
       </div>
 
-      <!-- 2×2 video grid -->
-      <div class="cat-videos" data-animate>
-        <div class="cat-videos-title">Little Moments</div>
-        <div class="cat-grid">
-          <div>
-            <div class="cat-vid-card">
-              <video src="小乖/1.mp4" muted loop playsinline preload="metadata"></video>
-              <div class="cat-vid-wash"></div>
-              <div class="vid-play"></div>
-            </div>
-            <div class="cat-vid-label">小乖驾到</div>
-          </div>
-          <div>
-            <div class="cat-vid-card">
-              <video src="小乖/2.mp4" muted loop playsinline preload="metadata"></video>
-              <div class="cat-vid-wash"></div>
-              <div class="vid-play"></div>
-            </div>
-            <div class="cat-vid-label">呼噜时刻</div>
-          </div>
-          <div>
-            <div class="cat-vid-card">
-              <video src="小乖/3.mp4" muted loop playsinline preload="metadata"></video>
-              <div class="cat-vid-wash"></div>
-              <div class="vid-play"></div>
-            </div>
-            <div class="cat-vid-label">捣蛋日常</div>
-          </div>
-          <div>
-            <div class="cat-vid-card">
-              <video src="小乖/4.mp4" muted loop playsinline preload="metadata"></video>
-              <div class="cat-vid-wash"></div>
-              <div class="vid-play"></div>
-            </div>
-            <div class="cat-vid-label">九斤公主</div>
-          </div>
+      <!-- Video row -->
+      <div class="xg-videos-wrap" data-animate>
+        <span class="xg-label" style="display:block;margin-bottom:16px">Little Clips</span>
+        <div class="xg-videos-track" id="xgVideoTrack">
+          <div class="xg-video"><video src="小乖/1.mp4" muted loop playsinline preload="metadata"></video><div class="xg-glare"></div><div class="xg-play"></div><div class="xg-vid-label">小乖驾到</div></div>
+          <div class="xg-video"><video src="小乖/2.mp4" muted loop playsinline preload="metadata"></video><div class="xg-glare"></div><div class="xg-play"></div><div class="xg-vid-label">呼噜时刻</div></div>
+          <div class="xg-video"><video src="小乖/3.mp4" muted loop playsinline preload="metadata"></video><div class="xg-glare"></div><div class="xg-play"></div><div class="xg-vid-label">捣蛋日常</div></div>
+          <div class="xg-video"><video src="小乖/4.mp4" muted loop playsinline preload="metadata"></video><div class="xg-glare"></div><div class="xg-play"></div><div class="xg-vid-label">九斤公主</div></div>
         </div>
+        <div class="xg-dots" id="xgVideoDots"></div>
       </div>
-
-      <div class="cat-footer">小乖的日常碎片</div>
     </div>
   </section>
 
@@ -1006,21 +968,106 @@ tick();
   updateParallax();
 })();
 
-// ── Cat video cards: hover play/pause ──
-var catCards=document.querySelectorAll('.cat-vid-card');
-catCards.forEach(function(card){
-  var vid=card.querySelector('video');
-  if(!vid)return;
-  card.addEventListener('mouseenter',function(){vid.play().catch(function(){})});
-  card.addEventListener('mouseleave',function(){vid.pause();vid.currentTime=0});
-  card.addEventListener('click',function(e){
-    if(vid.hasAttribute('controls')){
-      vid.removeAttribute('controls');vid.pause();vid.currentTime=0;
-    }else{
-      vid.setAttribute('controls','controls');vid.play().catch(function(){});
+// ════ CAROUSELS: photos + videos ════
+(function(){
+  // ── Photo carousel ──
+  var photoTrack=document.getElementById('xgPhotoTrack');
+  var photoDots=document.getElementById('xgPhotoDots');
+  if(photoTrack&&photoDots){
+    var photos=photoTrack.querySelectorAll('.xg-photo');
+    // Build dot indicators
+    photos.forEach(function(_,i){
+      var d=document.createElement('span');d.className='xg-dot';
+      d.onclick=function(){photos[i].scrollIntoView({behavior:'smooth',block:'nearest',inline:'start'})};
+      photoDots.appendChild(d);
+    });
+    var allDots=photoDots.querySelectorAll('.xg-dot');
+    // Auto-scroll photos every 4s
+    var photoIdx=0;
+    function autoScrollPhotos(){
+      if(document.getElementById('xiaoguai').getBoundingClientRect().top<window.innerHeight*.5&&
+         document.getElementById('xiaoguai').getBoundingClientRect().bottom>0){
+        photoIdx=(photoIdx+1)%photos.length;
+        photos[photoIdx].scrollIntoView({behavior:'smooth',block:'nearest',inline:'start'});
+      }
     }
-  });
-});
+    setInterval(autoScrollPhotos,4000);
+    // Update active dot on scroll
+    photoTrack.addEventListener('scroll',function(){
+      var sx=photoTrack.scrollLeft+photoTrack.offsetWidth/2;
+      photos.forEach(function(p,i){if(p.offsetLeft+p.offsetWidth/2>sx){photoIdx=i;return false}});
+      allDots.forEach(function(d,i){d.classList.toggle('active',i===photoIdx)});
+    });
+    // Glare tracking on photos
+    photos.forEach(function(p){
+      var gl=p.querySelector('.xg-glare');
+      if(!gl)return;
+      p.addEventListener('mousemove',function(e){
+        var r=p.getBoundingClientRect();
+        gl.style.setProperty('--gx',((e.clientX-r.left)/r.width)*100+'%');
+        gl.style.setProperty('--gy',((e.clientY-r.top)/r.height)*100+'%');
+      });
+      p.addEventListener('mouseleave',function(){gl.style.setProperty('--gx','50%');gl.style.setProperty('--gy','50%')});
+    });
+    // Drag to scroll
+    var dragging=false,startX=0,scrollLeft=0;
+    photoTrack.addEventListener('mousedown',function(e){dragging=true;startX=e.pageX;scrollLeft=photoTrack.scrollLeft;photoTrack.style.cursor='grabbing'});
+    photoTrack.addEventListener('mouseleave',function(){dragging=false;photoTrack.style.cursor='grab'});
+    photoTrack.addEventListener('mouseup',function(){dragging=false;photoTrack.style.cursor='grab'});
+    photoTrack.addEventListener('mousemove',function(e){if(!dragging)return;e.preventDefault();photoTrack.scrollLeft=scrollLeft-(e.pageX-startX)*1.5});
+  }
+
+  // ── Video carousel ──
+  var vidTrack=document.getElementById('xgVideoTrack');
+  var vidDots=document.getElementById('xgVideoDots');
+  if(vidTrack&&vidDots){
+    var videos=vidTrack.querySelectorAll('.xg-video');
+    videos.forEach(function(_,i){
+      var d=document.createElement('span');d.className='xg-dot';
+      d.onclick=function(){videos[i].scrollIntoView({behavior:'smooth',block:'nearest',inline:'start'})};
+      vidDots.appendChild(d);
+    });
+    var allVidDots=vidDots.querySelectorAll('.xg-dot');
+    var vidIdx=0;
+    // Update active dot
+    vidTrack.addEventListener('scroll',function(){
+      var sx=vidTrack.scrollLeft+vidTrack.offsetWidth/2;
+      videos.forEach(function(v,i){if(v.offsetLeft+v.offsetWidth/2>sx){vidIdx=i;return false}});
+      allVidDots.forEach(function(d,i){d.classList.toggle('active',i===vidIdx)});
+    });
+    // Video interactions: glare + hover play
+    videos.forEach(function(card){
+      var vid=card.querySelector('video');
+      var gl=card.querySelector('.xg-glare');
+      // Glare
+      if(gl){
+        card.addEventListener('mousemove',function(e){
+          var r=card.getBoundingClientRect();
+          gl.style.setProperty('--gx',((e.clientX-r.left)/r.width)*100+'%');
+          gl.style.setProperty('--gy',((e.clientY-r.top)/r.height)*100+'%');
+        });
+        card.addEventListener('mouseleave',function(){gl.style.setProperty('--gx','50%');gl.style.setProperty('--gy','50%')});
+      }
+      // Hover play
+      if(vid){
+        card.addEventListener('mouseenter',function(){vid.play().catch(function(){})});
+        card.addEventListener('mouseleave',function(){vid.pause();vid.currentTime=0});
+        card.addEventListener('click',function(e){
+          if(vid.hasAttribute('controls')){vid.removeAttribute('controls');vid.pause();vid.currentTime=0}
+          else{vid.setAttribute('controls','controls');vid.play().catch(function(){})}
+        });
+      }
+    });
+    // Drag scroll
+    var vDragging=false,vStartX=0,vScrollLeft=0;
+    vidTrack.addEventListener('mousedown',function(e){vDragging=true;vStartX=e.pageX;vScrollLeft=vidTrack.scrollLeft;vidTrack.style.cursor='grabbing'});
+    vidTrack.addEventListener('mouseleave',function(){vDragging=false;vidTrack.style.cursor='grab'});
+    vidTrack.addEventListener('mouseup',function(){vDragging=false;vidTrack.style.cursor='grab'});
+    vidTrack.addEventListener('mousemove',function(e){if(!vDragging)return;e.preventDefault();vidTrack.scrollLeft=vScrollLeft-(e.pageX-vStartX)*1.5});
+    // Set first dot active
+    if(allVidDots.length)allVidDots[0].classList.add('active');
+  }
+})();
 
 // ── Spring animation observer for work cards ──
 var springEls=document.querySelectorAll('[data-spring]');
