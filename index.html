@@ -345,57 +345,106 @@ body::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.1);border-radius:2px
  .navbar .logo{padding:6px 0}
 }
 
-/* ════ XIAO GUAI — cat intro ════ */
-#xiaoguai{padding-top:140px;padding-bottom:160px}
-.cat-intro{display:flex;align-items:center;gap:80px;max-width:1000px;margin:0 auto}
+/* ════ XIAO GUAI — cat sanctuary ════ */
+#xiaoguai{background:linear-gradient(180deg,#fdfaf7 0%,#faf5f0 30%,#f8f0ea 60%,#faf5f0 100%);position:relative;padding-top:140px;padding-bottom:160px}
+/* Hide the global dark breathing glow in this section */
+#xiaoguai::before{content:'';position:absolute;inset:0;z-index:0;pointer-events:none;
+  background:linear-gradient(180deg,rgba(250,240,235,0.3) 0%,transparent 40%,transparent 60%,rgba(250,240,235,0.3) 100%)}
+#xiaoguai .section-inner{position:relative;z-index:2}
+#xiaoguai .section-heading{
+  background:linear-gradient(180deg,#4a3528 0%,#8a7568 100%);
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
 
-/* ── Photo side: torn paper + halftone + shadow ── */
-.cat-photo-side{flex:0 0 420px;position:relative}
+/* ── Cat photo + intro ── */
+.cat-hero{display:flex;align-items:center;gap:80px;max-width:960px;margin:0 auto}
+.cat-photo-side{flex:0 0 380px;position:relative}
 .cat-torn-frame{position:relative;display:inline-block;
-  filter:url(#tornEdge) grayscale(100%) contrast(.92);
-  -webkit-filter:grayscale(100%) contrast(.92);
+  filter:url(#tornEdge);
+  -webkit-filter:url(#tornEdge);
   transition:transform .5s cubic-bezier(0.34,1.56,0.64,1)}
 .cat-torn-frame:hover{transform:rotate(-1deg) scale(1.02)}
 .cat-torn-frame img{display:block;max-width:100%;height:auto;
-  border-radius:4px 12px 8px 16px}
-/* Halftone dot overlay */
-.cat-halftone{position:absolute;inset:0;pointer-events:none;opacity:.22;mix-blend-mode:multiply;
+  border-radius:4px 14px 8px 18px}
+/* Color soften overlay — keeps silver fur, reduces contrast */
+.cat-soften{position:absolute;inset:0;pointer-events:none;opacity:.12;
+  background:linear-gradient(135deg,rgba(210,190,180,0.6) 0%,rgba(245,235,225,0.3) 50%,rgba(220,200,185,0.5) 100%);
+  border-radius:4px 14px 8px 18px;z-index:1;mix-blend-mode:soft-light}
+/* Subtle halftone — barely visible, adds print feel */
+.cat-halftone{position:absolute;inset:0;pointer-events:none;opacity:.1;mix-blend-mode:soft-light;
   background-image:repeating-radial-gradient(circle at 2px 4px,
-    #000 0,#000 1.2px,transparent 1.5px,transparent 4px);
-  background-size:6px 6px;border-radius:4px 12px 8px 16px;z-index:2}
-/* Soft shadow layer handled by SVG feDropShadow */
+    #c4a898 0,#c4a898 1px,transparent 1.5px,transparent 4px);
+  background-size:6px 6px;border-radius:4px 14px 8px 18px;z-index:2}
 
-/* ── SVG torn paper filter ── */
+/* ── SVG filter hidden ── */
 .cat-filter-svg{position:absolute;width:0;height:0}
 
-/* ── Text side ── */
+/* ── Text ── */
 .cat-text-side{flex:1;
   opacity:0;transform:translateY(40px);
   will-change:transform,opacity}
-.cat-text-side .cat-label{font-family:'JetBrains Mono',monospace;font-size:.62rem;
-  letter-spacing:.14em;color:var(--pink);opacity:.8;text-transform:uppercase}
-.cat-text-side .cat-name{font-family:'Inter','Noto Sans SC',sans-serif;
-  font-size:3rem;font-weight:900;line-height:1.1;color:#fff;
+.cat-text-side .cat-label{font-family:'JetBrains Mono',monospace;font-size:.58rem;
+  letter-spacing:.16em;color:#c4a0c0;text-transform:uppercase}
+.cat-text-side .cat-name{font-family:'Inter','Noto Sans SC',serif;
+  font-size:3rem;font-weight:900;line-height:1.1;color:#3a2a20;
   margin:10px 0 20px;letter-spacing:-.01em}
 .cat-text-side .cat-name em{font-style:normal;
-  background:linear-gradient(135deg,#ef4cac,#f8a0c8);-webkit-background-clip:text;
+  background:linear-gradient(135deg,#d490a8,#c8a0b8);-webkit-background-clip:text;
   -webkit-text-fill-color:transparent}
-.cat-text-side .cat-story{font-family:'Inter','Noto Sans SC',sans-serif;
-  font-size:.95rem;line-height:2;color:var(--white-70)}
-.cat-text-side .cat-story em{color:var(--pink);font-style:normal;font-weight:600}
+.cat-text-side .cat-story{font-family:'Inter','Noto Sans SC',serif;
+  font-size:.92rem;line-height:2.1;color:#8a7a70}
+.cat-text-side .cat-story em{color:#c490a0;font-style:normal;font-weight:600}
 .cat-text-side .cat-stats{display:flex;gap:32px;margin-top:24px;
-  font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:.1em;
-  color:rgba(255,255,255,.35)}
-.cat-text-side .cat-stats span::before{content:'◆ ';color:var(--pink);font-size:.4rem;
-  vertical-align:middle;margin-right:4px;opacity:.6}
+  font-family:'JetBrains Mono',monospace;font-size:.6rem;letter-spacing:.12em;
+  color:rgba(160,140,130,.55)}
+.cat-text-side .cat-stats span::before{content:'· ';color:#c4a0c0;font-size:.8rem;
+  vertical-align:middle;margin-right:4px;font-weight:700}
+
+/* ════ 2×2 VIDEO GRID ════ */
+.cat-videos{margin-top:120px;max-width:900px;margin-left:auto;margin-right:auto}
+.cat-videos-title{text-align:center;font-family:'JetBrains Mono',monospace;font-size:.62rem;
+  letter-spacing:.16em;color:rgba(160,140,130,.5);text-transform:uppercase;margin-bottom:48px}
+.cat-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px 56px}
+.cat-vid-card{position:relative;
+  filter:url(#tornEdge);
+  -webkit-filter:url(#tornEdge);
+  transition:transform .5s cubic-bezier(0.34,1.56,0.64,1);
+  cursor:pointer}
+.cat-vid-card:hover{transform:translateY(-6px) scale(1.03)}
+.cat-vid-card video{width:100%;display:block;border-radius:4px 12px 6px 14px;
+  object-fit:cover;aspect-ratio:4/3;
+  opacity:.92;transition:opacity .4s}
+.cat-vid-card:hover video{opacity:1}
+/* Soft color wash on each video */
+.cat-vid-wash{position:absolute;inset:0;pointer-events:none;opacity:.1;mix-blend-mode:soft-light;
+  background:linear-gradient(160deg,rgba(220,200,190,0.5) 0%,rgba(245,230,220,0.2) 50%,rgba(210,195,185,0.4) 100%);
+  border-radius:4px 12px 6px 14px;z-index:1}
+.cat-vid-card .vid-play{position:absolute;inset:0;z-index:2;display:flex;align-items:center;justify-content:center;
+  pointer-events:none;opacity:0;transition:opacity .3s,transform .45s cubic-bezier(0.34,1.56,0.64,1);transform:scale(.7)}
+.cat-vid-card:hover .vid-play{opacity:1;transform:scale(1)}
+.cat-vid-card .vid-play::after{content:'';width:38px;height:38px;border-radius:50%;
+  background:rgba(200,140,160,.5);box-shadow:0 0 24px rgba(200,140,160,.3)}
+.cat-vid-card .vid-play::before{content:'';position:absolute;z-index:1;
+  border-left:8px solid #fff;border-top:5px solid transparent;border-bottom:5px solid transparent;margin-left:3px}
+.cat-vid-label{text-align:center;font-family:'JetBrains Mono',monospace;font-size:.55rem;
+  letter-spacing:.1em;color:rgba(160,140,130,.4);margin-top:14px;transition:color .3s}
+.cat-vid-card:hover+.cat-vid-label{color:#c490a0}
+
+/* ── Bottom decoration ── */
+.cat-footer{text-align:center;margin-top:64px;font-family:'JetBrains Mono',monospace;font-size:.55rem;
+  letter-spacing:.2em;color:rgba(180,160,150,.35)}
+.cat-footer::before{content:'✦ ';color:#d4b0c0}
+.cat-footer::after{content:' ✦';color:#d4b0c0}
 
 /* ── Mobile ── */
 @media(max-width:767px){
- .cat-intro{flex-direction:column;gap:40px}
- .cat-photo-side{flex:0 0 auto;max-width:300px;margin:0 auto}
+ #xiaoguai{padding-top:100px;padding-bottom:120px}
+ .cat-hero{flex-direction:column;gap:40px}
+ .cat-photo-side{flex:0 0 auto;max-width:260px;margin:0 auto}
  .cat-text-side .cat-name{font-size:2rem}
- .cat-text-side .cat-story{font-size:.85rem;line-height:1.8}
- .cat-text-side .cat-stats{gap:18px;flex-wrap:wrap}
+ .cat-text-side .cat-story{font-size:.82rem;line-height:1.9}
+ .cat-text-side .cat-stats{gap:16px;flex-wrap:wrap}
+ .cat-grid{grid-template-columns:1fr;gap:36px 0}
+ .cat-videos{margin-top:80px}
 }
 </style>
 </head>
@@ -531,22 +580,25 @@ body::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.1);border-radius:2px
 
   <!-- ── XIAO GUAI ── -->
   <section class="content-section" id="xiaoguai">
-    <!-- SVG filter: torn paper edge + drop shadow -->
+    <!-- SVG filters: torn paper edge + soft shadow -->
     <svg class="cat-filter-svg" aria-hidden="true">
-      <filter id="tornEdge" x="-10%" y="-10%" width="130%" height="130%">
-        <feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="5" result="noise"/>
-        <feDisplacementMap in="SourceGraphic" in2="noise" scale="14" xChannelSelector="R" yChannelSelector="G" result="displaced"/>
-        <feDropShadow in="displaced" dx="5" dy="10" stdDeviation="16" flood-color="#000" flood-opacity="0.38"/>
-        <feDropShadow in="displaced" dx="2" dy="4" stdDeviation="6" flood-color="#ef4cac" flood-opacity="0.08"/>
+      <filter id="tornEdge" x="-12%" y="-12%" width="130%" height="130%">
+        <feTurbulence type="fractalNoise" baseFrequency="0.032" numOctaves="5" result="noise"/>
+        <feDisplacementMap in="SourceGraphic" in2="noise" scale="15" xChannelSelector="R" yChannelSelector="G" result="displaced"/>
+        <feDropShadow in="displaced" dx="3" dy="8" stdDeviation="14" flood-color="#4a3020" flood-opacity="0.18"/>
+        <feDropShadow in="displaced" dx="2" dy="3" stdDeviation="5" flood-color="#c8a0b0" flood-opacity="0.06"/>
       </filter>
     </svg>
 
     <div class="section-inner">
       <h1 class="section-heading" data-animate>Meet<br>Xiao Guai</h1>
-      <div class="cat-intro">
+
+      <!-- Cat photo + intro -->
+      <div class="cat-hero">
         <div class="cat-photo-side" data-animate>
           <div class="cat-torn-frame">
             <img src="小乖/介绍页抠图.jpg" alt="小乖 - 银白长毛猫" loading="lazy" decoding="async">
+            <div class="cat-soften"></div>
             <div class="cat-halftone"></div>
           </div>
         </div>
@@ -564,6 +616,47 @@ body::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.1);border-radius:2px
           </div>
         </div>
       </div>
+
+      <!-- 2×2 video grid -->
+      <div class="cat-videos" data-animate>
+        <div class="cat-videos-title">Little Moments</div>
+        <div class="cat-grid">
+          <div>
+            <div class="cat-vid-card">
+              <video src="小乖/1.mp4" muted loop playsinline preload="metadata"></video>
+              <div class="cat-vid-wash"></div>
+              <div class="vid-play"></div>
+            </div>
+            <div class="cat-vid-label">小乖驾到</div>
+          </div>
+          <div>
+            <div class="cat-vid-card">
+              <video src="小乖/2.mp4" muted loop playsinline preload="metadata"></video>
+              <div class="cat-vid-wash"></div>
+              <div class="vid-play"></div>
+            </div>
+            <div class="cat-vid-label">呼噜时刻</div>
+          </div>
+          <div>
+            <div class="cat-vid-card">
+              <video src="小乖/3.mp4" muted loop playsinline preload="metadata"></video>
+              <div class="cat-vid-wash"></div>
+              <div class="vid-play"></div>
+            </div>
+            <div class="cat-vid-label">捣蛋日常</div>
+          </div>
+          <div>
+            <div class="cat-vid-card">
+              <video src="小乖/4.mp4" muted loop playsinline preload="metadata"></video>
+              <div class="cat-vid-wash"></div>
+              <div class="vid-play"></div>
+            </div>
+            <div class="cat-vid-label">九斤公主</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cat-footer">小乖的日常碎片</div>
     </div>
   </section>
 
@@ -912,6 +1005,22 @@ tick();
 
   updateParallax();
 })();
+
+// ── Cat video cards: hover play/pause ──
+var catCards=document.querySelectorAll('.cat-vid-card');
+catCards.forEach(function(card){
+  var vid=card.querySelector('video');
+  if(!vid)return;
+  card.addEventListener('mouseenter',function(){vid.play().catch(function(){})});
+  card.addEventListener('mouseleave',function(){vid.pause();vid.currentTime=0});
+  card.addEventListener('click',function(e){
+    if(vid.hasAttribute('controls')){
+      vid.removeAttribute('controls');vid.pause();vid.currentTime=0;
+    }else{
+      vid.setAttribute('controls','controls');vid.play().catch(function(){});
+    }
+  });
+});
 
 // ── Spring animation observer for work cards ──
 var springEls=document.querySelectorAll('[data-spring]');
